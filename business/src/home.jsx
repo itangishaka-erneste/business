@@ -11,8 +11,7 @@ const PRESENTER = "Erneste";
 const FULL_NAME = "Itangishaka Erneste";
 const SKILLS = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express", "PHP", "PostgreSQL", "MySQL"];
 const BRAND_LOGO = "https://thumbs.dreamstime.com/b/web-467395551.jpg";
-// Paste the presenter's photo URL here; initials stay visible until one is supplied.
-const PROFILE_IMAGE = "";
+const PROFILE_IMAGE = "https://lh3.googleusercontent.com/a-/ALV-UjUizgOwMh4A4oWLADr0jg_la1R5gx9BImnEvf2A5TVWDwZ5uDIG9lCJGvGP9B6_zzCSX8d0zHFysfiQAZCL5s4z8tYwNE-JMORzJ2DC7bvLNTOF252ehhKX9IjUJddNjLKpYaaoaJ0w2EAD4QdQ7FnnHpX_I6Gwqdlr83JyAeValt0RPMB_3FKOxHlYWne_YRVtiDVcqi2MZHxfsZi2BnZ0c_kAubWJIwesgA5_ybJQ-WX8S9YrIptAN6eIC3XQyAUN25AbR4gsGEM8Ah6qTVfo0nZxs1fPlckdRvjR4QwIu_w6k3_YERkLLwm6rG7k5gT8fYtly4CDW9jvdPFCrfQXc4tNAKkpkbAPVWCU3aUjuCyOIyeGGI4o5LimRNDcHdYCnpQGowFK3qr3zRT8swwGhvrQdMAYmeH8k40vJB0Xu_cbWyDHHBsTlsR5g8dXx3tkNjPEWidBY0n33ykHhfSBjjZjGsiFrOuaSl8X-bJRgd22snR0h0UYqfj8WkS81xZYBoYytwq9sREabQ_3EgmIJ51YA9YSU53vbLNSacAF8qaKHH2hxYAeG0J-rdpVMvJzytFr8CUmsEM8PHAc13tjPQjXeQisnIEkreWK30BVuImzmWXRDLwNooyjjC0OJGRgyBOnIrrGhouHnONW-WhCea1ydC1nWc3wUY7f7rGJ9l_Qb2OKXcFKb90m3bcXM6G2pEg20kBi5KDQiRgNTZ11adze7oavfMgBv13CEkB05MZ_Xi6mZavJwIbOFGTaEAdnRhN10Lxom8__6xgqxjzH0NPAm2l51QLkIpM6f8qxT9ekIHEJJ-t3tW5GfH7wTfyGE211TudSA5Eel_hEMya2DURapWpI0x8GqQnrX2Yl6Z7OsVpRPOQia1HsLil3q3SefNm4Yvl79hAX2i4ZL1Yc3Lp1Lvh-fwSpPGUQYpl2SId-HhTd5bqELC60TMAmBcyNtZ1pUm6S9ujmIJWgY7dadTZEkoCyA3O1kxCRoLR3aiZsIGsjGr2tTUep1XdS5GpL-_jnvg_MkCO1sxETBtBj_wEbfpbF9X_uFhpLkcnUsZGExLJ9Oq87zMs=s432-c-no";
 const PROBLEM_PARAGRAPH = "Agriculture is one of the most important sectors of Rwanda's economy, supporting millions of households and providing livelihoods for a large proportion of the population. However, farmers continue to face serious challenges that affect their productivity, income and ability to produce enough food. According to the National Institute of Statistics of Rwanda (NISR), approximately 2.2 million agricultural households, representing 65.3% of all households in Rwanda, depend on agriculture. Despite its importance, agricultural production remains highly vulnerable to unpredictable weather conditions, particularly irregular rainfall and prolonged dry periods. In its November 2025 report, the Food and Agriculture Organization (FAO) reported that rainfall in Rwanda during September and October 2025 was approximately 30% below the long-term average, affecting crop development, especially in the Eastern Province. This creates difficulties for farmers who depend on rainfall to provide sufficient water for their crops. Furthermore, NISR's 2024 Agricultural Household Survey found that only 5.6% of agricultural plots were irrigated, showing how limited access to irrigation remains a challenge. The situation is particularly concerning for small-scale farmers, as NISR's 2025 Season A Agricultural Survey found that only 12% practised irrigation. These challenges also have consequences for food affordability: according to NISR's Comprehensive Food Security and Vulnerability Analysis (2024), fresh food inflation increased from 1.5% in 2021/22 to 41.8% in 2022/23, partly due to unfavourable weather and poor agricultural performance. This raises an important question: How can we help farmers overcome unpredictable rainfall, manage water efficiently, reduce avoidable crop losses and improve agricultural productivity?";
 const IMG = {
   hero: "https://www.twl-irrigation.com/wp-content/uploads/2021/11/Smart-irrigation.jpg",
@@ -38,12 +37,14 @@ function GlobalStyle() {
 @keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(250,204,21,.7)}100%{box-shadow:0 0 0 24px rgba(250,204,21,0)}}
 @keyframes loader-spin{to{transform:rotate(360deg)}}
 @keyframes loader-wave{to{stroke-dashoffset:-32}}
+@keyframes gentle-bounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.02)}}
 .anim-up{animation:up .7s both}.anim-fade{animation:fade .6s both}
 .anim-grow{animation:grow 1s .2s both;transform-origin:bottom}
 .anim-float{animation:floaty 4s ease-in-out infinite}
 .anim-float-slow{animation:floaty 6s ease-in-out infinite}
 .anim-drop{animation:drop 1.6s linear infinite}
 .anim-ring{animation:pulseRing 1.6s infinite}
+.profile-bounce{animation:gentle-bounce 3.5s ease-in-out infinite;transform-origin:center;will-change:transform}
 .loader-progress{transform-origin:60px 60px;animation:loader-spin 1.8s linear infinite}
 .loader-wave{animation:loader-wave 1.3s linear infinite}
 .thumb *{animation:none!important}
@@ -187,7 +188,7 @@ function S1() {
         <div className="flex items-center gap-4">
           <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-green-100 bg-blue-50 text-2xl font-extrabold text-blue-900">
             {PROFILE_IMAGE
-              ? <img src={PROFILE_IMAGE} alt={`Profile of ${FULL_NAME}`} className="h-full w-full object-cover" />
+              ? <img src={PROFILE_IMAGE} alt={`Profile of ${FULL_NAME}`} className="profile-bounce h-full w-full object-cover" />
               : "IE"}
           </div>
           <div>
