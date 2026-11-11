@@ -175,33 +175,48 @@ const Src = ({ children }) => <p className="mt-2 text-[13px] font-medium opacity
 
 /* ───────────── slides ───────────── */
 function S1() {
+  const team = [
+    { name: "Itangishaka Erneste", role: "Software Developer", skills: SKILLS },
+    { name: "Mutabazi Queen Peace", role: "Designer & Electronics Technician" },
+    { name: "Keza Nadia", role: "Designer & Electronics Technician" },
+  ];
+
   return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden bg-white px-14 py-8 text-slate-800" style={FONT}>
-      <header className="flex items-center justify-between border-b border-green-100 pb-4">
+    <div className="relative flex h-full w-full flex-col overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-sky-950 px-14 py-8 text-white" style={FONT}>
+      <div className="pointer-events-none absolute -right-20 -top-28 h-96 w-96 rounded-full bg-yellow-300/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-36 -left-20 h-96 w-96 rounded-full bg-sky-300/10 blur-3xl" />
+      <header className="relative flex items-center justify-between border-b border-white/15 pb-4">
         <div className="flex items-center gap-3">
           <img src={BRAND_LOGO} alt="Project logo" className="h-12 w-12 rounded-xl bg-white object-contain p-1" />
-          <span className="text-lg font-bold text-blue-950">Hinga Weze <span className="text-green-700">na Uhira</span></span>
+          <span className="text-lg font-bold">Hinga Weze <span className="text-yellow-300">na Uhira</span></span>
         </div>
-        <span className="rounded-full bg-yellow-100 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-950">AI for agriculture</span>
+        <span className="rounded-full bg-yellow-300 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-950">S5 · MSII</span>
       </header>
-      <div className="relative mt-5 flex-1 anim-up">
-        <div className="flex items-center gap-4">
-          <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-green-100 bg-blue-50 text-2xl font-extrabold text-blue-900">
-            {PROFILE_IMAGE
-              ? <img src={PROFILE_IMAGE} alt={`Profile of ${FULL_NAME}`} className="profile-bounce h-full w-full object-cover" />
-              : "IE"}
-          </div>
+      <div className="relative mt-7 flex flex-1 flex-col anim-up">
+        <div className="flex items-end justify-between">
           <div>
-            <p className="text-xl font-extrabold text-blue-950">{FULL_NAME}</p>
-            <p className="mt-0.5 text-sm font-semibold text-green-800">Programmer · HTML, CSS, JavaScript, React, Node.js, Express, PHP, PostgreSQL and MySQL</p>
+            <p className="text-sm font-bold uppercase tracking-[.2em] text-yellow-300">Our project</p>
+            <h1 className="mt-2 text-[54px] font-extrabold leading-tight">Hinga Weze <span className="text-yellow-300">na Uhira</span></h1>
+            <p className="mt-2 text-xl text-sky-100">Smart irrigation for resilient farms</p>
+          </div>
+          <div className="mb-1 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-sky-50">
+            <Users className="h-5 w-5 text-yellow-300" aria-hidden="true" />
+            Project team
           </div>
         </div>
-        <h1 className="mt-4 text-[36px] font-extrabold leading-tight text-blue-950">Helping farmers make every drop count</h1>
-        <p className="mt-3 max-w-[1160px] text-[15px] leading-[1.45] text-slate-700">{PROBLEM_PARAGRAPH}</p>
-      </div>
-      <div className="mt-3 flex items-center justify-between border-t border-green-100 pt-3">
-        <span className="flex items-center gap-2 text-sm font-semibold text-blue-900"><Cpu className="h-4 w-4 text-green-700" /> Data-driven irrigation decisions, powered by AI</span>
-        <img src={BRAND_LOGO} alt="Project logo" className="h-9 w-9 rounded-lg bg-white object-contain p-1" />
+        <div className="mt-7 grid grid-cols-3 gap-4">
+          {team.map(({ name, role, skills }) => (
+            <div key={name} className="min-h-[150px] rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+              <p className="text-lg font-extrabold leading-snug">{name}</p>
+              <p className="mt-2 text-sm font-semibold text-yellow-300">{role}</p>
+              {skills && <p className="mt-3 text-xs leading-relaxed text-sky-100">{skills.join(" · ")}</p>}
+            </div>
+          ))}
+        </div>
+        <p className="mt-auto flex items-center gap-2 border-t border-white/15 pt-5 text-sm font-semibold text-sky-100">
+          <Droplets className="h-5 w-5 text-yellow-300" aria-hidden="true" />
+          Helping farmers make every drop count
+        </p>
       </div>
     </div>
   );
