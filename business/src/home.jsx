@@ -19,6 +19,11 @@ const IMG = {
   b: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMD1-kHj4nHD6JUTyB5TMNxqddCjttG25rjw_TchGWi9e4PZJXXEZwU90&s=10",
   c: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo5Yc9wsBsCEbA4rC8YzneHOrvkEoPbyOMuvNvwm-TnbySILi-78RpwGSe&s=10",
 };
+const TEAM_IMAGES = {
+  queen: "https://photos.app.goo.gl/vAGoXgqRX8FhozYMA",
+  erneste: "https://photos.fife.usercontent.google.com/pw/AP1GczOsv237tiyzGHdZc4-siqoyE4OW19TgGjZcJOmFWGH669l5E63ek42q=w711-h948-s-no-gm?authuser=0",
+  nadia: "https://lh3.googleusercontent.com/a-/ALV-UjVsjGIC-279QRqhYU1ngE-PGZ3Mw72UmrrTq84E15cGGIYsOd-o=s80-p",
+};
 /* ─────────────────────────────────── */
 
 const FONT = { fontFamily: "Poppins, ui-sans-serif, system-ui, sans-serif" };
@@ -176,9 +181,9 @@ const Src = ({ children }) => <p className="mt-2 text-[13px] font-medium opacity
 /* ───────────── slides ───────────── */
 function S1() {
   const team = [
-    { name: "Itangishaka Erneste", role: "Software Developer", skills: SKILLS },
-    { name: "Mutabazi Queen Peace", role: "Designer & Electronics Technician" },
-    { name: "Keza Nadia", role: "Designer & Electronics Technician" },
+    { name: "Itangishaka Erneste", role: "Software Developer", image: TEAM_IMAGES.erneste, bio: "Develops the full-stack software and digital tools behind the smart irrigation experience.", skills: "Full-stack development · Web technologies" },
+    { name: "Mutabazi Queen Peace", role: "Design & Electronics", image: TEAM_IMAGES.queen, bio: "Creates user-focused designs and contributes to the electronic systems that support the solution.", skills: "Product design · Electronics" },
+    { name: "Keza Nadia", role: "Design & Electronics", image: TEAM_IMAGES.nadia, bio: "Helps shape practical system designs and supports the electronics powering the project.", skills: "System design · Electronics" },
   ];
 
   return (
@@ -205,11 +210,14 @@ function S1() {
           </div>
         </div>
         <div className="mt-7 grid grid-cols-3 gap-4">
-          {team.map(({ name, role, skills }) => (
-            <div key={name} className="min-h-[150px] rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
-              <p className="text-lg font-extrabold leading-snug">{name}</p>
-              <p className="mt-2 text-sm font-semibold text-yellow-300">{role}</p>
-              {skills && <p className="mt-3 text-xs leading-relaxed text-sky-100">{skills.join(" · ")}</p>}
+          {team.map(({ name, role, image, bio, skills }) => (
+            <div key={name} className="min-h-[205px] rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
+              <div className="flex items-center gap-3">
+                <img src={image} alt={`Portrait of ${name}`} referrerPolicy="no-referrer" className="h-14 w-14 shrink-0 rounded-full border-2 border-yellow-300 object-cover shadow-md" />
+                <div className="min-w-0"><p className="text-lg font-extrabold leading-snug">{name}</p><p className="mt-1 text-sm font-semibold text-yellow-300">{role}</p></div>
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-sky-100">{bio}</p>
+              <p className="mt-2 border-t border-white/15 pt-2 text-[11px] font-semibold text-yellow-100">{skills}</p>
             </div>
           ))}
         </div>
